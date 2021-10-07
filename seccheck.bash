@@ -10,8 +10,11 @@ function checks() {
 	if [[ "$2" != "$3" ]]
 	then
 		echo "The $1 is not compliant. The current policy should be: $2. The current value is $3"
+		echo "Remediation: $4"
+
 	else
 		echo "The $1 is compliant. Current value is $3" 
+
 	fi
 }
 
@@ -44,5 +47,9 @@ do
 done
 
 
+#ip forwarding
+ipf=$(grep "net\.ipv4\.ip_forward" /etc/sysctl.conf)
+checks "ip forwarding" "#net.ipv4.ip_forward=0" "${ipf}" " set the flag to 0 instead of 1"  
+ 
 
 #ls -ld /home/ |egrep '^d' | awk ' { print $3 } ' 
