@@ -48,7 +48,8 @@ function security_menu() {
     echo "[2] check if any user besides root has a UID of 0"
     echo "[3] check last 10 logged in users"
     echo "[4] see current logged in users"
-    echo "[5] Exit"
+    echo "[5] Block List Menu"
+    echo "[6] Exit"
     read -p "Please enter a choice above: " choice
 
     case "$choice" in
@@ -61,7 +62,9 @@ function security_menu() {
         ;;
         4) w |less
         ;;
-        5) exit 0
+	5) blocklistmenu
+	;;
+        6) exit 0
         ;;
 
         *)
@@ -73,6 +76,37 @@ function security_menu() {
 security_menu
 
 }
+
+
+function blocklistmenu() {
+
+    clear
+
+    echo "[C]isco blocklist gen"
+    echo "[D]omain URL blocklist gen"
+    echo "[W]indows Blocklist gen" 
+    read -p "please enter a choice: " choice
+    case "$choice" in
+	C)
+	;;
+	D)
+	;;
+	W)
+	;;
+	E) exit 0
+	;;
+
+	*)
+	   invalid_opt
+
+	;;
+    esac
+blocklistmenu
+
+}
+
+
+
 
 function admin_menu() {
 
