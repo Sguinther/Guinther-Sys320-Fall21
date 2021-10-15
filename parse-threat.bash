@@ -86,6 +86,8 @@ fi
 # Cisco
 if [[ ${cisco} ]]
 then
+
+#CISCO RULES
 	egrep -o '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.0' badips.txt | tee badips.nocidr
 	for eachip in $(cat badips.nocidr)
 	do
@@ -100,6 +102,8 @@ fi
 # Windows Firewall
 if [[ ${wfirewall} ]]
 then
+
+#WINDOWS RULES (from before)
 	egrep -o '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.0' badips.txt | tee badips.windowsform
 	for eachip in $(cat badips.windowsform)
 	do
@@ -113,6 +117,8 @@ fi
 # MacOS
 if [[ ${macOS} ]]
 then
+
+#MAC OS RULES
 	echo '
 	scrub-anchor "com.apple/*"
 	nat-anchor "com.apple/*"
@@ -144,6 +150,17 @@ then
 	rm threats.txt
 	echo 'Cisco URL filters file successfully parsed and created at "ciscothreats.txt"'
 fi
+
+
+#function menu2() {
+#	wget https://raw.githubusercontent.com/botherder/targetedthreats/master/targetedthreats.csv -O /tmp/blocks.csv 
+#
+#	tempIP=$(grep  AllowedIPs wg0.conf | sort -u | tail -1 | cut -d\. -f4 | cut -d\>
+#	ip=$(expr ${tempIP} + 1)
+
+
+
+
 
 
 

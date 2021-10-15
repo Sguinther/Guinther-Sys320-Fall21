@@ -87,7 +87,7 @@ function blocklistmenu() {
     echo "[W]indows Blocklist gen" 
     read -p "please enter a choice: " choice
     case "$choice" in
-	C)
+	C) 
 	;;
 	D)
 	;;
