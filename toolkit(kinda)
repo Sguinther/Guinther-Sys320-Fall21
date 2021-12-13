@@ -1,0 +1,20 @@
+function checkDir() {
+
+
+function menu () {
+    do {
+    cls
+    Write-Host "`nIncident Response Toolkit"
+    Write-Host "`n1. List running processes nd pth for each"
+    Write-Host "`nList all registered services and the executables path"
+    Write-Host "`nList all network TCP sockets" 
+    Write-Host "`nList all user account info"
+    Write-Host "`nList all Net Adapter Info"
+    Write-Host "`nGet the Event Log of the system"
+    $choice = Read-Host "`nChoose"
+
+    if ($choice -eq '1') {
+    $process = Get-Process | select Name, Path
+    $process | Out-Host
+    $process | Export-Csv -Path 'C:\Users\All Users'
+    }
