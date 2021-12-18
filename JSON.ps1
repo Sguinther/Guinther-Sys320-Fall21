@@ -1,7 +1,38 @@
-﻿cls
+﻿<#
+    .SYNOPSIS
+        Script to parese the latest NVD dataset feed
+
+    . Description
+        This file will parse a json file and return the results to a CSV file
+
+    .Example
+        .\week8-params-skel.ps1 -year "2021" -keyword "java" -filename "nvd-data.csv"
+
+    .Notes
+        Created by sam guinther (kinda)
+
+
+#>
+param (
+    
+    [Alias("y")]
+    [Parameter(Mandatory=$true)]
+    [int]$year,
+
+    [Alias("k")]
+    [Parameter(Mandatory=$true)]
+    [string]$keyword,
+
+    [Alias("f")]
+    [Parameter(Mandatory=$true)]
+    [string]$filename
+
+)
+
+cls
 
 #convert json file into powershell object
-$nvd_vulns = (Get-Content -Raw -Path ".\nvdcve-1.1-2021.json" | `
+$nvd_vulns = (Get-Content -Raw -Path ".\nvdcve-1.1-$year.json" | `
 ConvertFrom-Json) | select CVE_Items
 
 #csv file
@@ -17,7 +48,7 @@ foreach ($vuln in $nvd_vulns.CVE_ITEMS) {
     #Vuln description
     $descript = $vuln.cve.description.description_data
 
-    $keyword = "Java"
+    #$keyword = "Java"
     #search for keyword
     if ($descript -imatch "$keyword") {
 
